@@ -23,7 +23,7 @@ const  HotelBookingContainer= function (){
 
     //const allGuest = guest.map()
 const submitGuest = function (name,email,CheckIn){
-    const newGuest= BookingService.addBookings(name,email,CheckIn).SetGuest([...guest,{newGuest}])
+   BookingService.addBookings(name,email,CheckIn).then(newGuest =>SetGuest([...guest,{newGuest}]))
 }
 
     return (

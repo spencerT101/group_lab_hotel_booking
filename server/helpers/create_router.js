@@ -1,7 +1,7 @@
 const createRouter = function(collection){
 
     router.get('/', (req, res)=>{
-        collection.find().toArray()
+        collection.find().toArray().then(data=> res.json(data)).then(result=> res.send(result))
         
     })
    
@@ -10,11 +10,17 @@ const createRouter = function(collection){
 
 
 
+// CREATE
+router.post('/', (req, res) =>)
 
 
 
+// DELETE
 
-
-
-    router.delete('/:id', (req, res))
+    router.delete('/:id', (req, res) =>{
+        const deleteBooking = req.params.id
+        collection
+        .deleteOne({_id:ObjectID(deleteBooking)});
+        .then((docs) => res.json.(docs))
+    })
 }

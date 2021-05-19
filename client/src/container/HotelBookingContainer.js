@@ -10,30 +10,37 @@ const  HotelBookingContainer= function (){
     const [guest,SetGuest]= useState([])
 
     useEffect(() => {
-        fetchBookings()
+        BookingService.getBookings().then(result=>SetGuest(result))
     }, [])
 
-    const fetchBookings = () => {
-        fetch('http://localhost:5000/api/bookings')
-        .then(res => res.json())
-        .then(bookings => SetGuest(bookings));
-    }
+    // const fetchBookings = () => {
+    //     fetch('http://localhost:5000/api/bookings')
+    //     .then(res => res.json())
+    //     .then(bookings => SetGuest(bookings));
+    // }
 
 
 
     //const allGuest = guest.map()
 const submitGuest = function (name,email,CheckIn){
-   BookingService.addBookings(name,email,CheckIn).then(newGuest =>SetGuest([...guest,{newGuest}]))
+   BookingService.addBookings(name,email,CheckIn)
+   .then(newGuest =>SetGuest([...guest,{newGuest}]))
+   
+}
+const deleteBooking = (id) =>{
+    BookingService.deleteBooking(id)
+    .then(()=> BookingService.getBookings())
+    .then(result=>SetGuest(result))
 }
 
     return (
         <div>
         <AddBookingForm submitGuest={submitGuest}/>
-        {/* <GuestList/> */}
+        <GuestList guest={guest} handleBooking={deleteBooking}/>
 
         </div>
     )
-}
 
+}
 
 export default HotelBookingContainer;

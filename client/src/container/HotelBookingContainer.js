@@ -37,7 +37,7 @@ const deleteBooking = (id) =>{
         <div>
         <AddBookingForm submitGuest={submitGuest}/>
         <GuestList guest={guest} handleBooking={deleteBooking}/>
-
+        <h1>REDRUM</h1>
         </div>
     )
 
